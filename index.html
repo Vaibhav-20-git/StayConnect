@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAIBHAV.IN</title>
+    <style>
+        body { font-family: 'Poppins', sans-serif; margin: 0; background: #f9fafb; color: #1f2937; }
+        header { background: #2563eb; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
+        header h1 { margin: 0; }
+        nav a { color: white; margin-left: 20px; text-decoration: none; font-weight: 500; }
+        nav a:hover { text-decoration: underline; }
+
+        .hero { position: relative; text-align: center; color: white; }
+        .hero img { width: 100%; height: 70vh; object-fit: cover; filter: brightness(60%); }
+        .hero-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; }
+        .hero-buttons { margin-top: 20px; }
+        .btn, .btn-outline { padding: 10px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; }
+        .btn { background: #10b981; color: white; }
+        .btn-outline { border: 2px solid white; color: white; }
+
+        .form-container { max-width: 400px; margin: 40px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        label { display: block; margin-top: 10px; font-weight: 500; }
+        input, select, textarea { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #cbd5e1; border-radius: 8px; }
+        button { width: 100%; padding: 12px; margin-top: 20px; background: #2563eb; color: white; border: none; border-radius: 8px; cursor: pointer; }
+        button:hover { background: #1e3a8a; }
+
+        .features { text-align: center; padding: 40px; }
+        .feature-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        .feature-item { background: white; padding: 20px; border-radius: 10px; width: 200px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+        footer { text-align: center; padding: 15px; background: #1e3a8a; color: white; }
+        .hidden { display: none; }
+
+        .house-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px; }
+        .house-card { background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; }
+        .house-card img { width: 100%; height: 200px; object-fit: cover; }
+        .house-card .details { padding: 15px; }
+        .house-card h3 { margin: 5px 0; color: #2563eb; }
+        .house-card p { margin: 4px 0; font-size: 15px; }
+
+        .page { display: none; }
+        .active { display: block; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>StayConnect</h1>
+    <nav>
+        <a href="#" onclick="showPage('home')">Home</a>
+        <a href="#" onclick="showPage('register')">Register</a>
+        <a href="#" onclick="showPage('login')">Login</a>
+    </nav>
+</header>
+
+<!-- Home Page -->
+<section id="home" class="page active">
+    <div class="hero">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Rental Property">
+        <div class="hero-text">
+            <h2>Simplifying Rental Living for Tenants and Property Owners</h2>
+            <p>Connecting owners and tenants seamlessly with online rent, maintenance requests, and easy communication.</p>
+            <div class="hero-buttons">
+                <a href="#" onclick="showPage('register')" class="btn">Register</a>
+                <a href="#" onclick="showPage('login')" class="btn-outline">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="features">
+        <h2>Our Key Features</h2>
+        <div class="feature-list">
+            <div class="feature-item">💳 Online Rent Payments</div>
+            <div class="feature-item">🧰 Maintenance Requests</div>
+            <div class="feature-item">💬 Chat between Tenant & Owner</div>
+            <div class="feature-item">📄 Document Storage</div>
+        </div>
+    </section>
+</section>
+
+<!-- Register Page -->
+<section id="register" class="page">
+    <div class="form-container">
+        <h2>Register</h2>
+        <form id="registerForm">
+            <label>Full Name</label>
+            <input type="text" id="name" required>
+            <label>Email</label>
+            <input type="email" id="email" required>
+            <label>Phone Number</label>
+            <input type="tel" id="phone" required>
+            <label>Password</label>
+            <input type="password" id="password" required>
+            <label>Role</label>
+            <select id="role" required>
+                <option value="">Select Role</option>
+                <option value="tenant">Tenant</option>
+                <option value="owner">Owner</option>
+            </select>
+
+            <!-- Owner Fields -->
+            <div id="ownerFields" class="hidden">
+                <label>Property Address</label>
+                <input type="text" id="address">
+                <label>Square Feet</label>
+                <input type="number" id="sqft">
+                <label>Monthly Rent (₹)</label>
+                <input type="number" id="rent">
+            </div>
+
+            <!-- Tenant Fields -->
+            <div id="tenantFields" class="hidden">
+                <label>Required Location</label>
+                <input type="text" id="location">
+                <label>Required Facilities</label>
+                <textarea id="facilities" placeholder="Example: 2BHK, Parking, WiFi..."></textarea>
+            </div>
+
+            <button type="submit" class="btn">Register</button>
+        </form>
+    </div>
+</section>
+
+<!-- Login Page -->
+<section id="login" class="page">
+    <div class="form-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label>Email</label>
+            <input type="email" id="loginEmail" required>
+            <label>Password</label>
+            <input type="password" id="loginPassword" required>
+            <button type="submit" class="btn">Login</button>
+        </form>
+    </div>
+</section>
+
+<!-- Dashboard Page -->
+<section id="dashboard" class="page">
+    <div class="form-container">
+        <h2>Dashboard</h2>
+        <p id="dashboardContent"></p>
+    </div>
+</section>
+
+<!-- Owner List Page -->
+<section id="ownerList" class="page">
+    <h2 style="text-align:center; margin-top:20px;">Available Flats in Kanuru</h2>
+    <div id="houseList" class="house-list"></div>
+</section>
+
+<footer>
+    <p>© 2025 StayConnect. All Rights Reserved.</p>
+</footer>
+
+<script>
+    function showPage(pageId){
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        window.scrollTo(0,0);
+    }
+
+    // Toggle fields based on role
+    const roleSelect = document.getElementById('role');
+    if(roleSelect){
+        roleSelect.addEventListener('change', () => {
+            document.getElementById('ownerFields').classList.toggle('hidden', roleSelect.value !== 'owner');
+            document.getElementById('tenantFields').classList.toggle('hidden', roleSelect.value !== 'tenant');
+        });
+    }
+
+    // Registration logic
+    const registerForm = document.getElementById('registerForm');
+    if(registerForm){
+        registerForm.addEventListener('submit',(e)=>{
+            e.preventDefault();
+            const role = document.getElementById('role').value;
+            const userData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                password: document.getElementById('password').value,
+                role: role
+            };
+
+            if(role==='owner'){
+                userData.address = document.getElementById('address').value;
+                userData.sqft = document.getElementById('sqft').value;
+                userData.rent = document.getElementById('rent').value;
+                localStorage.setItem('ownerData', JSON.stringify(userData));
+                document.getElementById('dashboardContent').innerText =
+                    `Welcome ${userData.name}! Your property at ${userData.address} (${userData.sqft} sq.ft) is listed for ₹${userData.rent}/month.`;
+                showPage('dashboard');
+            } else {
+                userData.location = document.getElementById('location').value.toLowerCase();
+                userData.facilities = document.getElementById('facilities').value;
+                localStorage.setItem('tenantData', JSON.stringify(userData));
+                showKanuruFlats(userData.location);
+                showPage('ownerList');
+            }
+        });
+    }
+
+    // Hardcoded flats in Kanuru
+    const kanuruFlats = [
+        {name:'Brundavanam Apartments', details:'D.No 215154'},
+        {name:'Royal Green City', details:'D.No 17203'},
+        {name:'Invicon Navah', details:'D.No 601111'}
+    ];
+
+    // Show Kanuru flats
+    function showKanuruFlats(location){
+        const houseList = document.getElementById('houseList');
+        if(location.includes('kanuru')){
+            houseList.innerHTML = kanuruFlats.map((flat,i)=>
+                `<div class="house-card">
+                    <div class="details">
+                        <h3>Flat ${i+1} ${flat.name}</h3>
+                        <p><strong>Address</strong> ${flat.details}, Kanuru, Vijayawada</p>
+                    </div>
+                </div>`
+            ).join('');
+        } else {
+            houseList.innerHTML = `<p style="text-align:center;">No houses found in ${location}.</p>`;
+        }
+    }
+</script>
+
+</body>
+</html>
